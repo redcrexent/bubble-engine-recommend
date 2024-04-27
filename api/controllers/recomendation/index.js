@@ -8,6 +8,7 @@ module.exports = {
   exits: {},
 
   fn: async function (_, __, inputs, exits) {
+    console.log(inputs.req._parsedUrl.path);
     let profiles = await sails.helpers.profile();
     let type = inputs.req.param("type");
     let villeCode = inputs.req.param("vc")[0] + "" + inputs.req.param("vc")[1];
@@ -21,28 +22,35 @@ module.exports = {
         nurse.preference2code?.startsWith(villeCode) ||
         nurse.preference3code?.startsWith(villeCode)
       ) {
-        recProfile.push(nurse._id);
-        var options = {
-          method: "POST",
-          uri: "https://medappy.bubbleapps.io/version-test/api/1.1/obj/RecomendedProfile",
-          form: {
-            'EmployerId': employeeCode,
-            'ProfileId': nurse._id
-          },
-          headers: {
-           'Authorization' : 'Bearer 893a8f6242e817db95672b8a91c8a780',
-          },
-        };
+        if (
+          (type == "Clinique" && nurse.Clinique) ||
+          (type.indexOf("Hospitalier") >= 0 && nurse.Clinique) ||
+          (type == "EHPAD" && nurse.Clinique) ||
+          (type == "MAS, FAM, FAS, EAM" && nurse.Clinique)
+        ) {
+          recProfile.push(nurse._id);
+          var options = {
+            method: "POST",
+            uri: "https://medappy.bubbleapps.io/version-test/api/1.1/obj/RecomendedProfile",
+            form: {
+              EmployerId: employeeCode,
+              ProfileId: nurse._id,
+            },
+            headers: {
+              Authorization: "Bearer 893a8f6242e817db95672b8a91c8a780",
+            },
+          };
 
-        var rp = require("request-promise");
+          var rp = require("request-promise");
 
-        let data = await rp(options);
+          let data = await rp(options);
+        }
       }
     }
 
     //let job = await sails.helpers.job("1714039640909x502644892155772900");
     //let employer = await sails.helpers.employee("1713769404289x586068340378173400");
     //console.log(jobId);
-    return exits.success({ profiles: profiles });
+    return exits.success({ msg: "success" });
   },
 };
