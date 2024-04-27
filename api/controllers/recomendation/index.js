@@ -24,9 +24,9 @@ module.exports = {
       ) {
         if (
           (type == "Clinique" && nurse.Clinique) ||
-          (type.indexOf("Hospitalier") >= 0 && nurse.Clinique) ||
-          (type == "EHPAD" && nurse.Clinique) ||
-          (type == "MAS, FAM, FAS, EAM" && nurse.Clinique)
+          (type.indexOf("Hospitalier") >= 0 && nurse["Centre Hospitalier"]) ||
+          (type == "EHPAD" && nurse.EHPAD) ||
+          (type == "MAS, FAM, FAS, EAM" && nurse["MAS, FAM"])
         ) {
           recProfile.push(nurse._id);
           var options = {
