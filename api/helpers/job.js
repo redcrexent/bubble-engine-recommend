@@ -26,7 +26,6 @@ module.exports = {
 
     data = JSON.parse(data);
     let Job = data.response;
-    console.log(Job);
     return exits.success(Job);
   },
 };

@@ -18,7 +18,6 @@ module.exports = {
     );
     data=JSON.parse(data);
     let profiles=data.response.results;
-    console.log(profiles);
     return exits.success(profiles);
   },
 };
