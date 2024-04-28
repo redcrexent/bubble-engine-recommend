@@ -62,7 +62,7 @@ module.exports = {
             method: "DELETE",
             uri:
               "https://medappy.bubbleapps.io/version-test/api/1.1/obj/RecomendedProfile/" +
-              nurse._id,
+              p._id,
             headers: {
               Authorization: "Bearer 893a8f6242e817db95672b8a91c8a780",
             },
