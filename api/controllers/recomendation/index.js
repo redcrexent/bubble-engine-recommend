@@ -54,30 +54,31 @@ module.exports = {
           }
         }
       }
+    }
 
-      for (j = 0; j < existingProfiles.length; j++) {
-        let p = existingProfiles[j];
-        if (p.EmployerId == employeeCode) {
-          var options = {
-            method: "DELETE",
-            uri:
-              "https://medappy.bubbleapps.io/api/1.1/obj/RecomendedProfile/" +
-              p._id,
-            headers: {
-              Authorization: "Bearer 893a8f6242e817db95672b8a91c8a780",
-            },
-          };
+    for (j = 0; j < existingProfiles.length; j++) {
+      let p = existingProfiles[j];
+      if (p.EmployerId == employeeCode) {
+        var options = {
+          method: "DELETE",
+          uri:
+            "https://medappy.bubbleapps.io/api/1.1/obj/RecomendedProfile/" +
+            p._id,
+          headers: {
+            Authorization: "Bearer 893a8f6242e817db95672b8a91c8a780",
+          },
+        };
 
-          var rp = require("request-promise");
+        var rp = require("request-promise");
 
-          try {
-            let data = await rp(options);
-          } catch (err) {
-            console.log("delete error for "+inputs.req._parsedUrl.path);
-          }
+        try {
+          let data = await rp(options);
+        } catch (err) {
+          console.log("delete error for " + inputs.req._parsedUrl.path);
         }
       }
     }
+
     return "";
   },
 };
