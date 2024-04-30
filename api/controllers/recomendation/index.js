@@ -73,7 +73,7 @@ module.exports = {
           try {
             let data = await rp(options);
           } catch (err) {
-            console.log(err);
+            console.log("error for "+inputs.req._parsedUrl.path);
           }
         }
       }
