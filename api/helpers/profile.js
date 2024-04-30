@@ -14,7 +14,7 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     let data = await rp.get(
-      "https://medappy.bubbleapps.io/version-test/api/1.1/obj/Profile/"
+      "https://medappy.bubbleapps.io/api/1.1/obj/Profile/"
     );
     data=JSON.parse(data);
     let profiles=data.response.results;

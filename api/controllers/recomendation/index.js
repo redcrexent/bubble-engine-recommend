@@ -36,7 +36,7 @@ module.exports = {
           if (sdate >= currentdate) {
             var options = {
               method: "POST",
-              uri: "https://medappy.bubbleapps.io/version-test/api/1.1/obj/RecomendedProfile",
+              uri: "https://medappy.bubbleapps.io/api/1.1/obj/RecomendedProfile",
               form: {
                 EmployerId: employeeCode,
                 ProfileId: nurse._id,
@@ -61,7 +61,7 @@ module.exports = {
           var options = {
             method: "DELETE",
             uri:
-              "https://medappy.bubbleapps.io/version-test/api/1.1/obj/RecomendedProfile/" +
+              "https://medappy.bubbleapps.io/api/1.1/obj/RecomendedProfile/" +
               p._id,
             headers: {
               Authorization: "Bearer 893a8f6242e817db95672b8a91c8a780",

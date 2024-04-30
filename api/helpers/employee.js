@@ -20,7 +20,7 @@ module.exports = {
 
   fn: async function (inputs,exits) {
     const url =
-    "https://medappy.bubbleapps.io/version-test/api/1.1/obj/Employer/" +
+    "https://medappy.bubbleapps.io/api/1.1/obj/Employer/" +
     inputs.EmployeeId;
 
   let data = await rp.get(url);
