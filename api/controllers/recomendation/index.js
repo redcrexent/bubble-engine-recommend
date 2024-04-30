@@ -56,7 +56,7 @@ module.exports = {
       }
 
       for (j = 0; j < existingProfiles.length; j++) {
-        let p = existingProfiles[0];
+        let p = existingProfiles[j];
         if (p.EmployerId == employeeCode) {
           var options = {
             method: "DELETE",
