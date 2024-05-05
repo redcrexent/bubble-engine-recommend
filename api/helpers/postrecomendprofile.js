@@ -29,10 +29,10 @@ module.exports = {
   fn: async function (inputs) {
     let url = "https://medappy.bubbleapps.io/api/1.1/obj/RecomendedProfile";
     if (inputs.IsTest)
-      url = "https://medappy.bubbleapps.io/api/1.1/obj/RecomendedProfile";
+      url = "https://medappy.bubbleapps.io/version-test/api/1.1/obj/RecomendedProfile";
     var options = {
       method: "POST",
-      uri: "https://medappy.bubbleapps.io/api/1.1/obj/RecomendedProfile",
+      uri: url,
       form: {
         EmployerId: inputs.EmployerId,
         ProfileId: inputs.ProfileId,

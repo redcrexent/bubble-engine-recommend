@@ -10,15 +10,14 @@ module.exports = {
 
   fn: async function (_, __, inputs, exits) {
     console.log(inputs.req._parsedUrl.path);
-    let profiles = await sails.helpers.profile();
-    let existingProfiles = await sails.helpers.recomendedprofile();
-    let type = inputs.req.param("type");
     let test = false;
-    test = inputs.req.param("type") == 1;
+    test = inputs.req.param("t") == 1;
+    let profiles = await sails.helpers.profile(test);
+    let existingProfiles = await sails.helpers.recomendedprofile(test);
+    let type = inputs.req.param("type");
     let villeCode = inputs.req.param("vc")[0] + "" + inputs.req.param("vc")[1];
     let employeeCode = inputs.req.param("eid");
 
-    let recProfile = [];
     for (i = 0; i < profiles.length; i++) {
       let nurse = profiles[i];
       if (
@@ -32,12 +31,7 @@ module.exports = {
           (type == "EHPAD" && nurse.EHPAD) ||
           (type == "MAS, FAM, FAS, EAM" && nurse["MAS, FAM"])
         ) {
-          let sdate = moment(nurse.startdate).format("YYMM");
-          let currentdate = moment().format("YYMM");
-
-          if (sdate >= currentdate) {
-           await sails.helpers.postrecommendprofile();
-          }
+            await sails.helpers.postrecomendprofile(employeeCode,nurse._id,test);
         }
       }
     }

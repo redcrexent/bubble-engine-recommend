@@ -38,7 +38,8 @@ module.exports = {
 
   fn: async function (inputs) {
     let url = "https://medappy.bubbleapps.io/api/1.1/obj/Offres";
-    if (inputs.IsTest) url = "https://medappy.bubbleapps.io/version-test/api/1.1/obj/Offres";
+    if (inputs.IsTest)
+      url = "https://medappy.bubbleapps.io/version-test/api/1.1/obj/Offres";
     var options = {
       method: "POST",
       uri: url,
@@ -58,8 +59,7 @@ module.exports = {
     try {
       let data = await rp(options);
     } catch (err) {
-console.log(err);
-
+      console.log(err);
     }
   },
 };

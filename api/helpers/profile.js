@@ -4,7 +4,12 @@ module.exports = {
 
   description: "Profile something.",
 
-  inputs: {},
+  inputs: {
+    IsTest: {
+      type: "boolean",
+      required: false,
+    },
+  },
 
   exits: {
     success: {
@@ -13,8 +18,14 @@ module.exports = {
   },
 
   fn: async function (inputs, exits) {
+
+    let url = "https://medappy.bubbleapps.io/api/1.1/obj/Profile/";
+    if (inputs.IsTest)
+      url =
+        "https://medappy.bubbleapps.io/version-test/api/1.1/obj/Profile/";
+
     let data = await rp.get(
-      "https://medappy.bubbleapps.io/api/1.1/obj/Profile/"
+      url
     );
     data=JSON.parse(data);
     let profiles=data.response.results;
