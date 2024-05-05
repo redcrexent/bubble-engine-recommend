@@ -36,13 +36,16 @@ module.exports = {
       }
     }
 
+    let deleteuri="https://medappy.bubbleapps.io/api/1.1/obj/RecomendedProfile/";
+    if(test)
+      deleteuri="https://medappy.bubbleapps.io/version-test/api/1.1/obj/RecomendedProfile/";
     for (j = 0; j < existingProfiles.length; j++) {
       let p = existingProfiles[j];
       if (p.EmployerId == employeeCode) {
         var options = {
           method: "DELETE",
           uri:
-            "https://medappy.bubbleapps.io/api/1.1/obj/RecomendedProfile/" +
+          deleteuri +
             p._id,
           headers: {
             Authorization: "Bearer 893a8f6242e817db95672b8a91c8a780",
