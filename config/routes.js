@@ -20,6 +20,7 @@ module.exports.routes = {
   ***************************************************************************/
   "GET /": "home/index",
   "GET /api/recommendation": "recomendation/index",
+  "GET /api/offers": "offers/index",
 
   /***************************************************************************
   *                                                                          *

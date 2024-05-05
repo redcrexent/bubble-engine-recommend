@@ -13,6 +13,8 @@ module.exports = {
     let profiles = await sails.helpers.profile();
     let existingProfiles = await sails.helpers.recomendedprofile();
     let type = inputs.req.param("type");
+    let test = false;
+    test = inputs.req.param("type") == 1;
     let villeCode = inputs.req.param("vc")[0] + "" + inputs.req.param("vc")[1];
     let employeeCode = inputs.req.param("eid");
 
@@ -34,23 +36,7 @@ module.exports = {
           let currentdate = moment().format("YYMM");
 
           if (sdate >= currentdate) {
-            var options = {
-              method: "POST",
-              uri: "https://medappy.bubbleapps.io/api/1.1/obj/RecomendedProfile",
-              form: {
-                EmployerId: employeeCode,
-                ProfileId: nurse._id,
-              },
-              headers: {
-                Authorization: "Bearer 893a8f6242e817db95672b8a91c8a780",
-              },
-            };
-
-            var rp = require("request-promise");
-
-            try {
-              let data = await rp(options);
-            } catch (err) {}
+           await sails.helpers.postrecommendprofile();
           }
         }
       }
